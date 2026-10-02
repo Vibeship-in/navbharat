@@ -1,0 +1,27 @@
+# Dependencies and generated hosting output
+node_modules/
+dist/
+.netlify/
+coverage/
+.cache/
+tests/output/
+
+# Local customer documents and handover archives
+*.pdf
+*.zip
+backups/
+*backup*.json
+
+# Secrets and local credentials
+.env
+.env.*
+*.pem
+*.key
+*service-account*.json
+*credentials*.json
+
+# Local tooling and OS files
+.DS_Store
+*.log
+__pycache__/
+*.pyc
