@@ -25,7 +25,7 @@ Netlify settings are committed in `netlify.toml`:
 - Publish directory: `dist`
 - Node: `24`
 
-The deployment build regenerates the app, runs the full test suite and recreates `dist` containing **only `index.html`**. Source, tests, backups, sample PDFs and archives are not published. Verify locally with:
+The deployment build regenerates the app, runs the full test suite and recreates `dist` containing **only `index.html` and the public `og-image.png`**. Source, tests, backups, sample PDFs and archives are not published. Verify locally with:
 
 ```sh
 npm ci
@@ -37,6 +37,12 @@ After creating the intended private GitHub repository, push `main` and connect t
 ### Owner trial handoff
 
 Use one primary device/browser; verify defaults in Configure and select Save defaults. Create a quote, review it, explicitly Save quotation, inspect View PDF and download to share. Export a JSON backup daily and before every app update, and keep copies of sent PDFs. Restore replaces data, not merges it. Login, shared storage and automatic cloud backups are not included in this trial.
+
+## Share preview image
+
+`assets/og-image.png` is an original 1200 × 630 branded image using the existing solar mark, green/cream/gold palette and quotation illustration. No customer information or price is included. `scripts/render-og.py` regenerates it using Pillow and local Georgia/Arial fonts on macOS; hosting uses the checked-in PNG and does not need Python or those fonts.
+
+The static HTML head includes Open Graph and large-image Twitter card metadata. The build uses Netlify's `URL` for production and `DEPLOY_PRIME_URL` for preview contexts. Optionally set `SITE_URL` to the permanent production address to override it. A local build without a site address leaves the image path relative; actual crawler preview requires the deployed image and publicly reachable HTML. `dist` publishes only the app and this image. Shared-link appearance has not yet been verified on a live deployment.
 
 ## Workflow
 

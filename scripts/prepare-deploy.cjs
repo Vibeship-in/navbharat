@@ -7,4 +7,5 @@ const output = path.join(root, 'dist');
 fs.rmSync(output, { recursive: true, force: true });
 fs.mkdirSync(output, { recursive: true });
 fs.writeFileSync(path.join(output, 'index.html'), html);
-console.log('Prepared dist/index.html; no other project files published.');
+fs.copyFileSync(path.join(root, 'assets', 'og-image.png'), path.join(output, 'og-image.png'));
+console.log('Prepared dist/index.html; public OG image included; no private project files published.');
