@@ -50,6 +50,7 @@ function buildPDF(q){
   font(20,true,C.blue);d.text('HYBRID ROOFTOP SOLAR',X,78);
   font(20,true,C.blue);d.text('SYSTEM QUOTATION',X,88);
   font(14,true,C.blue);d.text(ascii(`${q.capacity} kW`),194,88,{align:'right'});
+  if(q.panelType){font(10,true,C.muted);d.text(ascii(q.panelType),194,94,{align:'right'});}
   rule(98);
   font(10,true,C.muted);d.text('PREPARED FOR',X,111);
   const customerOverflow=[];
@@ -75,7 +76,7 @@ function buildPDF(q){
   // 02 / Keep the original four-column equipment table and pricing immediately below.
   page('System Configuration');
   d.setFillColor(...C.blue);d.rect(X,32,W,14,'F');
-  font(15,true,[255,255,255]);d.text(ascii(`${q.capacity} kW (HYBRID) Solar System Configuration`),105,41,{align:'center'});
+  font(15,true,[255,255,255]);d.text(ascii(`${q.capacity} kW${q.panelType?` / ${q.panelType}`:''} (HYBRID) Solar System Configuration`),105,41,{align:'center'});
   autoTable(d,{startY:49,margin:{top:34,bottom:22,left:X,right:X},tableWidth:W,
     head:[['Particulars','Items / specification','Qty','Warranty']],
     body:equipmentTableRows(q.equipment).map(row=>row.map(ascii)),
@@ -93,7 +94,7 @@ function buildPDF(q){
   // 03 / Preserve original document hierarchy, but use prose rather than report tables.
   page('System details & terms');
   heading('Solar System Details');
-  const sourceDetails=[`Plant capacity: ${q.capacity} kW`,`Estimated electricity generation / year: ${q.generation}`,`Expected life: ${q.life}`,`Maintenance service: ${q.maintenance}`];
+  const sourceDetails=[`Plant capacity: ${q.capacity} kW${q.panelType?` (${q.panelType})`:''}`,`Estimated electricity generation / year: ${q.generation}`,`Expected life: ${q.life}`,`Maintenance service: ${q.maintenance}`];
   for(const [i,s] of sourceDetails.entries())paragraph(s,{bullet:true,bold:i>1,size:12,leading:5.5});
   y+=3;heading('Terms & Conditions / Important Notes');
   let termText=q.terms;

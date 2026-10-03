@@ -131,3 +131,8 @@ html:has(.focused-task){scroll-padding-top:calc(var(--quotation-header-height,18
 .brand-name{font:700 24px/1 Georgia,'Times New Roman',serif;letter-spacing:-.6px;color:var(--green)}
 .brand-descriptor{font:650 9px/1.2 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;letter-spacing:2.1px;text-transform:uppercase;color:var(--muted)}
 @media(max-width:380px){.workspace-header .brand{gap:9px}.brand-symbol{width:38px;height:38px}.brand-name{font-size:22px}.brand-descriptor{font-size:8px;letter-spacing:1.9px}}
+
+/* DCR classification is separate from numeric system capacity. */
+.panel-type-field select{width:100%;min-height:46px;padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:white;color:var(--ink);font:inherit;touch-action:manipulation}
+.panel-type-field select:focus{outline:3px solid #98b7a9;outline-offset:3px}
+.panel-type-field small{font-size:11px;font-weight:400;line-height:1.45;color:var(--muted)}

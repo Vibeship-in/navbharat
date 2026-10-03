@@ -44,6 +44,12 @@ Use one primary device/browser; verify defaults in Configure and select Save def
 
 The static HTML head includes Open Graph and large-image Twitter card metadata. The build uses Netlify's `URL` for production and `DEPLOY_PRIME_URL` for preview contexts. Optionally set `SITE_URL` to the permanent production address to override it. A local build without a site address leaves the image path relative; actual crawler preview requires the deployed image and publicly reachable HTML. `dist` publishes only the app and this image. Shared-link appearance has not yet been verified on a live deployment.
 
+## DCR / Non-DCR panel type
+
+Capacity remains a numeric kW value. A separate **Default panel type** selector alongside it offers **DCR** and **Non-DCR** in Configure. Save defaults applies the selected type only to future quotations; existing saved quotations and the current draft retain their own values. The System & pricing step has the same lead-specific choice, and Review, saved cards and the actual PDF show it when selected. Existing backups missing this field load with no classification selected—no old records are silently labelled DCR or Non-DCR.
+
+Changing panel type does not change equipment descriptions, total price or estimated subsidy. The operator must review those fields for the selected type; a quotation-type change prompts manual price review and clears final-review acknowledgement. Backup/restore retains the field and rejects invalid classifications. Verified with **93 passing tests** after the full deployment build, including an actual four-page PDF containing the selected type.
+
 ## Workflow
 
 1. **Customer:** Enter name and address, with optional contact and electricity consumer details. Leads start blank. The default quotation date is the actual device-local date. Numbers reserve the next local sequence as `sequence/year`; abandoned drafts may leave gaps. You can edit the number, but duplicate saved numbers are rejected.
